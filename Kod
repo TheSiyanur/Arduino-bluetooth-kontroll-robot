@@ -1,0 +1,80 @@
+#include <Servo.h>
+int o =10;
+int p = 15;
+int sol_ileri = 3;
+int sag_ileri = 5;
+char data;
+Servo servo;
+void setup() {
+ pinMode(10,OUTPUT);
+ pinMode(sol_ileri,OUTPUT);
+ pinMode(sag_ileri,OUTPUT);
+ servo.attach(9);
+ Serial.begin(9600);
+}
+
+void loop() {
+  if(Serial.available()>0)
+  {
+
+  data=Serial.read();
+  if(data == 'a')//ileri
+  {
+    digitalWrite(sol_ileri,HIGH);
+    digitalWrite(sag_ileri,HIGH);
+  }
+  else if(data == 'b')//sol
+  {
+   
+    
+    digitalWrite(sag_ileri,HIGH);
+    digitalWrite(sol_ileri,LOW);
+    delay(200);
+     digitalWrite(sol_ileri,LOW);
+    digitalWrite(sag_ileri,LOW);
+  
+    
+  }
+  else if(data =='c')//sağ
+  {
+   
+    digitalWrite(sol_ileri,HIGH);
+    digitalWrite(sag_ileri,LOW);
+    delay(200);
+    digitalWrite(sol_ileri,LOW);
+    digitalWrite(sag_ileri,LOW);
+  
+    }
+  }
+  else if(data == 'd')//dur
+  {
+ 
+    digitalWrite(sol_ileri,LOW);
+    digitalWrite(sag_ileri,LOW);    
+  }
+  if(data=='e')
+  {
+    servo.write(0);
+  }
+  else if(data=='f')
+  {
+    servo.write(45);
+  }
+  else if(data=='g')
+  {
+    servo.write(90);
+  }
+  else if(data=='h')
+  {
+    servo.write(135);
+  }
+  else if(data=='i')
+  {
+    servo.write(180);
+  }
+
+
+
+  
+  }
+
